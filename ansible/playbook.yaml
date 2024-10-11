@@ -1,0 +1,32 @@
+--- 
+- name: Обновление системы
+  hosts: all
+  become: true
+  tasks:
+  - apt:
+      update_cache: yes
+      upgrade: full
+      autoremove: yes
+      autoclean: yes
+
+- name: Установка  пакетов
+  hosts: all
+  roles:
+    - role: default_packages
+  tags:
+    - install_packages
+
+- name: Установка и настройка nginx c кастомной страницей
+  hosts: nginx
+  roles:
+    - role: nginx
+  tags:
+    - nginx
+
+- name: Установка и настройка nginx ghjrcb
+  hosts: nginx_b
+  roles:
+    - role: nginx_b
+  tags:
+    - nginx_b
+

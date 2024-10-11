@@ -1,0 +1,18 @@
+---
+# tasks file for nginx_b
+
+- name: Установка Nginx 
+  apt:
+    name: "nginx"
+    state: present
+
+- name: Копирования файла upstreams
+  ansible.builtin.template:
+    src: upstreams.j2
+    dest: /etc/nginx/conf.d/upstreams.conf
+
+- name: Копирование файла default
+  copy:
+    src: default
+    dest: /etc/nginx/sites-available/default
+  notify: "Nginx Reloader"

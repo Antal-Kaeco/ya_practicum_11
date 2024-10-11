@@ -1,0 +1,14 @@
+---
+all:
+  hosts:
+    vm_2:
+      ansible_host: 89.169.129.82
+  children:
+    nginx:
+      hosts:
+        vm_1:
+          ansible_host: 89.169.141.148
+    nginx_b:
+      hosts:
+        vm_3:
+          ansible_host: 51.250.82.202
